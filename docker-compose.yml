@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        depends_on: 
+            - wordpress
+        ports:
+            - 443:443
+        volumes:
+            - ./conf.d:/etc/nginx/conf.d
+            - ./logs:/var/log/nginx
+            - ./.certs:/etc/nginx/.certs
+            - ./site:/var/www/html
+        restart: always
+
+
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./db-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: wordpress
+            MYSQL_DATABASE: wordpress
+        restart: always
+
+
+    wordpress:
+        image: wordpress:5-php7.0-fpm-alpine
+        container_name: wordpress
+        depends_on: 
+            - mysql
+        ports:
+            - 9000:9000
+        volumes:
+            - ./site:/var/www/html
+        environment:
+            WORDPRESS_DB_NAME: wordpress
+            WORDPRESS_DB_HOST: mysql:3306
+            WORDPRESS_DB_PASSWORD: wordpress
+        restart: always
+
