@@ -1,5 +1,5 @@
 # docker-wordpress-ssl
-Wordpress remote development environment with local https (ssl) using nginx reverse proxy and docker-compose.
+Wordpress remote development environment with local https (ssl) using nginx reverse proxy and docker-compose.</br>
 Run with ssl with one command. [docker-compose up]
 prerequites: docker, docker-compose
 
