@@ -1,5 +1,7 @@
 # docker-wordpress-ssl
 Wordpress remote development environment with local https (ssl) using nginx reverse proxy and docker-compose.
+Run wordpress dev environment with ssl with one command. [docker-compose up]
+prerequites: docker, docker-compose
 
 setup in under 10 minutes...
 1. add init.sql file to root directory with a dump of your production wordpress database.
