@@ -1,5 +1,0 @@
-site/
-.certs/
-db-data/
-init.sql
-logs/
